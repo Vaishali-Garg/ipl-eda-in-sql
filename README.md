@@ -82,6 +82,7 @@ See if the tables are created:
 
 ```
 ipl=# \dt
+
            List of relations
  Schema |    Name    | Type  |  Owner   
 --------+------------+-------+----------
@@ -93,11 +94,13 @@ ipl=# \dt
 
 ```
 ipl=# SELECT COUNT(*) as no_of_rows FROM matches;
+
  no_of_rows 
 ------------
         577
   
  ipl=# SELECT COUNT(*) as no_of_columns FROM information_schema.columns WHERE table_name = 'matches';
+ 
  no_of_columns 
 ---------------
             18
@@ -109,6 +112,7 @@ ipl=# SELECT COUNT(*) as no_of_rows FROM matches;
 
 ```
 ipl=# SELECT * FROM matches LIMIT 5;
+
  id | season |    city    |    date    |         team1         |            team2            |         toss_winner         | toss_decision | result | dl_applied |           winner            | win_by_runs | win_by_wickets | player_of_the_match |                   venue                    |  umpire1  |    umpire2     | umpire3 
 ----+--------+------------+------------+-----------------------+-----------------------------+-----------------------------+---------------+--------+------------+-----------------------------+-------------+----------------+---------------------+--------------------------------------------+-----------+----------------+---------
   1 |   2008 | Bangalore  | 2008-04-18 | Kolkata Knight Riders | Royal Challengers Bangalore | Royal Challengers Bangalore | field         | normal |          0 | Kolkata Knight Riders       |         140 |              0 | BB McCullum         | M Chinnaswamy Stadium                      | Asad Rauf | RE Koertzen    |        
@@ -120,6 +124,7 @@ ipl=# SELECT * FROM matches LIMIT 5;
   
   ```
   ipl=# SELECT * FROM deliveries LIMIT 5;
+  
  matchid | inning |     batting_team      |        bowling_team         | over | ball |   batsman   | non_striker | bowler  | is_super_over | wide_runs | bye_runs | legbye_runs | noball_runs | penalty_runs | batsman_runs | extra_runs | total_runs | player_dismissed | dismissal_kind | fielder 
 ---------+--------+-----------------------+-----------------------------+------+------+-------------+-------------+---------+---------------+-----------+----------+-------------+-------------+--------------+--------------+------------+------------+------------------+----------------+---------
        1 |      1 | Kolkata Knight Riders | Royal Challengers Bangalore |    1 |    1 | SC Ganguly  | BB McCullum | P Kumar |             0 |         0 |        0 |           1 |           0 |            0 |            0 |          1 |          1 |                  |                | 
@@ -133,6 +138,7 @@ ipl=# SELECT * FROM matches LIMIT 5;
 
 ```
 ipl=# SELECT date, team1, team2, winner FROM matches limit 5;
+
     date    |         team1         |            team2            |           winner            
 ------------+-----------------------+-----------------------------+-----------------------------
  2008-04-18 | Kolkata Knight Riders | Royal Challengers Bangalore | Kolkata Knight Riders
@@ -148,6 +154,7 @@ ipl=# SELECT date, team1, team2, winner FROM matches limit 5;
 
 ```
 ipl=# SELECT COUNT(DISTINCT(player_of_the_match)) FROM matches;
+
  count 
 -------
    187
@@ -159,6 +166,7 @@ ipl=# SELECT COUNT(DISTINCT(player_of_the_match)) FROM matches;
 
 ```
 ipl=# SELECT * FROM matches                                                                                                                               ORDER BY win_by_runs DESC LIMIT 5;
+
  id  | season |    city    |    date    |            team1            |            team2            |         toss_winner         | toss_decision | result | dl_applied |           winner            | win_by_runs | win_by_wickets | player_of_the_match |                    venue                     |    umpire1     |    umpire2    | umpire3 
 -----+--------+------------+------------+-----------------------------+-----------------------------+-----------------------------+---------------+--------+------------+-----------------------------+-------------+----------------+---------------------+----------------------------------------------+----------------+---------------+---------
  561 |   2016 | Bangalore  | 2016-05-14 | Royal Challengers Bangalore | Gujarat Lions               | Gujarat Lions               | field         | normal |          0 | Royal Challengers Bangalore |         144 |              0 | AB de Villiers      | M Chinnaswamy Stadium                        | AY Dandekar    | VK Sharma     |        
@@ -172,6 +180,7 @@ ipl=# SELECT * FROM matches                                                     
 
 ```
 ipl=# SELECT * FROM matches ORDER BY city LIMIT 10;
+
  id  | season |   city    |    date    |            team1            |         team2         |      toss_winner      | toss_decision | result | dl_applied |        winner         | win_by_runs | win_by_wickets | player_of_the_match |            venue             |     umpire1     |    umpire2     | umpire3 
 -----+--------+-----------+------------+-----------------------------+-----------------------+-----------------------+---------------+--------+------------+-----------------------+-------------+----------------+---------------------+------------------------------+-----------------+----------------+---------
  413 |   2014 | Abu Dhabi | 2014-04-26 | Kings XI Punjab             | Kolkata Knight Riders | Kolkata Knight Riders | field         | normal |          0 | Kings XI Punjab       |          23 |              0 | Sandeep Sharma      | Sheikh Zayed Stadium         | HDPK Dharmasena | RK Illingworth |        
@@ -191,6 +200,7 @@ ipl=# SELECT * FROM matches ORDER BY city LIMIT 10;
 ipl=# SELECT venue 
 ipl-# FROM matches 
 ipl-# ORDER BY date DESC LIMIT 10;
+
                         venue                        
 -----------------------------------------------------
  M Chinnaswamy Stadium
@@ -208,15 +218,19 @@ ipl-# ORDER BY date DESC LIMIT 10;
 
 ### What is the highest runs by which any team won a match
 
+```
 ipl=# SELECT MAX(win_by_runs) FROM matches;
+
  max 
 -----
  144
+```
 
 ### How many extra runs have been conceded in ipl
 
 ```
 ipl=# SELECT SUM(extra_runs) FROM deliveries;
+
  sum  
 ------
  9519
@@ -226,6 +240,7 @@ ipl=# SELECT SUM(extra_runs) FROM deliveries;
 
 ```
 ipl=# SELECT ROUND(AVG(win_by_runs), 2) FROM matches;
+
  round 
 -------
  13.72
@@ -238,24 +253,18 @@ ipl=# SELECT ROUND(AVG(win_by_runs), 2) FROM matches;
 ipl=# SELECT SUM(extra_runs) 
 ipl-# FROM deliveries 
 ipl-# WHERE bowler = 'SK Warne';
+
  sum 
 -----
   57
 ```
-### How many matches were played in Mumbai
-```
-ipl=# SELECT COUNT(*) 
-ipl-# FROM matches 
-ipl-# WHERE city = 'Mumbai';
- count 
--------
-    77
-```
+
 ### How many boundaries (4s or 6s) have been hit in ipl
 ```
 ipl=# SELECT COUNT(total_runs) 
 ipl-# FROM deliveries 
 ipl-# WHERE total_runs = 4 OR total_runs = 6;
+
  count 
 -------
  21409
@@ -295,6 +304,7 @@ ipl-# WHERE EXTRACT(month FROM date) = 3 or EXTRACT(month FROM date) = 6;
 ipl=# SELECT COUNT(player_dismissed) AS total_wickets 
 ipl-# FROM deliveries 
 ipl-# WHERE player_dismissed IS NOT NULL;
+
  total_wickets 
 ---------------
           6727
@@ -308,10 +318,21 @@ How many batsmen have names starting with S
 ipl=# SELECT COUNT(DISTINCT(batsman)) 
 ipl-# FROM deliveries 
 ipl-# WHERE batsman LIKE 'S%';
+
  count 
 -------
     69
 ```
+How many teams have word royal in it (could be anywhere in the team name, any case)
+
+```
+ipl=# SELECT COUNT(DISTINCT(team1))                                                                                                                       FROM matches                                                                                                                                              WHERE LOWER(team1) LIKE '%royal%';
+
+ count 
+-------
+     2
+ ```
+
 
 
 
