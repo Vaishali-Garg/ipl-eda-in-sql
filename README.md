@@ -162,7 +162,7 @@ ipl=# SELECT COUNT(DISTINCT(player_of_the_match)) FROM matches;
    187
 ```
 
-### Find season winner for each season (season winner is the winner of the last match of each season)
+#### Find season winner for each season (season winner is the winner of the last match of each season)
 ```
 select distinct on (season) * from matches order by season, date desc;
 
