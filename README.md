@@ -162,6 +162,23 @@ ipl=# SELECT COUNT(DISTINCT(player_of_the_match)) FROM matches;
    187
 ```
 
+### Find season winner for each season (season winner is the winner of the last match of each season)
+```
+select distinct on (season) * from matches order by season, date desc;
+
+ id  | season |     city     |    date    |        team1        |            team2            |         toss_winner         | toss_decision | result | dl_applied |        winner         | win_by_runs | win_by_wickets | player_of_the_match |              venue              |     umpire1     |    umpire2     | umpire3 
+-----+--------+--------------+------------+---------------------+-----------------------------+-----------------------------+---------------+--------+------------+-----------------------+-------------+----------------+---------------------+---------------------------------+-----------------+----------------+---------
+  58 |   2008 | Mumbai       | 2008-06-01 | Chennai Super Kings | Rajasthan Royals            | Rajasthan Royals            | field         | normal |          0 | Rajasthan Royals      |           0 |              3 | YK Pathan           | Dr DY Patil Sports Academy      | BF Bowden       | RE Koertzen    |        
+ 115 |   2009 | Johannesburg | 2009-05-24 | Deccan Chargers     | Royal Challengers Bangalore | Royal Challengers Bangalore | field         | normal |          0 | Deccan Chargers       |           6 |              0 | A Kumble            | New Wanderers Stadium           | RE Koertzen     | SJA Taufel     |        
+ 175 |   2010 | Mumbai       | 2010-04-25 | Chennai Super Kings | Mumbai Indians              | Chennai Super Kings         | bat           | normal |          0 | Chennai Super Kings   |          22 |              0 | SK Raina            | Dr DY Patil Sports Academy      | RE Koertzen     | SJA Taufel     |        
+ 248 |   2011 | Chennai      | 2011-05-28 | Chennai Super Kings | Royal Challengers Bangalore | Chennai Super Kings         | bat           | normal |          0 | Chennai Super Kings   |          58 |              0 | M Vijay             | MA Chidambaram Stadium, Chepauk | Asad Rauf       | SJA Taufel     |        
+ 322 |   2012 | Chennai      | 2012-05-27 | Chennai Super Kings | Kolkata Knight Riders       | Chennai Super Kings         | bat           | normal |          0 | Kolkata Knight Riders |           0 |              5 | MS Bisla            | MA Chidambaram Stadium, Chepauk | BF Bowden       | SJA Taufel     |        
+ 398 |   2013 | Kolkata      | 2013-05-26 | Mumbai Indians      | Chennai Super Kings         | Mumbai Indians              | bat           | normal |          0 | Mumbai Indians        |          23 |              0 | KA Pollard          | Eden Gardens                    | HDPK Dharmasena | SJA Taufel     |        
+ 458 |   2014 | Bangalore    | 2014-06-01 | Kings XI Punjab     | Kolkata Knight Riders       | Kolkata Knight Riders       | field         | normal |          0 | Kolkata Knight Riders |           0 |              3 | MK Pandey           | M Chinnaswamy Stadium           | HDPK Dharmasena | BNJ Oxenford   |        
+ 517 |   2015 | Kolkata      | 2015-05-24 | Mumbai Indians      | Chennai Super Kings         | Chennai Super Kings         | field         | normal |          0 | Mumbai Indians        |          41 |              0 | RG Sharma           | Eden Gardens                    | HDPK Dharmasena | RK Illingworth |        
+ 577 |   2016 | Bangalore    | 2016-05-29 | Sunrisers Hyderabad | Royal Challengers Bangalore | Sunrisers Hyderabad         | bat           | normal |          0 | Sunrisers Hyderabad   |           8 |              0 | BCJ Cutting         | M Chinnaswamy Stadium           | HDPK Dharmasena | BNJ Oxenford   |        
+```
+
 ## Order by
 
 #### Get details of top 5 matches which were won by maximum number of runs
