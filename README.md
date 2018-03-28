@@ -68,11 +68,9 @@ copy deliveries from '<filepath>/deliveries.csv' with (format 'csv', header true
 
 See if the tables are created:
 
-```sql
-\dt
 ```
+psql> \dt
 
-```
 List of relations
 Schema |    Name    | Type  |  Owner
 --------+------------+-------+----------
