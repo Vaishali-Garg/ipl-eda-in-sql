@@ -1,8 +1,14 @@
 # Exploratory Analysis of IPL Data Using SQL
 
+#### Table of Contents
+  [Setup DB](#setup-db)
+  [Shape of Data](#shape-of-data)
+
 Indian Premier League (IPL) is the cricket league consisting of various Indian cities and has a brand value of around $5.3Bn. It started in 2008 and attracts large viewership.
 
 The IPL data is available on [Kaggle](https://www.kaggle.com/manasgarg/ipl/data) as csv files. We create tables `matches` and `deliveries` using the data.
+
+## Setup DB
 
 Create database and switch to the same:
 
@@ -77,3 +83,5 @@ Schema |    Name    | Type  |  Owner
 public | deliveries | table | vaishali
 public | matches    | table | vaishali
 ```
+
+## Shape of Data
