@@ -6,7 +6,7 @@
   * [Viewing date](#viewing-data)
   * [Distinct values](#distinct-values)
   * [Order by](#order-by)
-  * [Aggregation](#aggregation)
+  * [Aggregation](#aggregation-)
   * [Pattern Match](#pattern-match)
   
 
@@ -165,7 +165,7 @@ ipl=# SELECT COUNT(DISTINCT(player_of_the_match)) FROM matches;
 ### Get details of top 5 matches which were won by maximum number of runs
 
 ```
-ipl=# SELECT * FROM matches                                                                                                                               ORDER BY win_by_runs DESC LIMIT 5;
+ipl=# SELECT * FROM matches                                                                                                                               ipl=# ORDER BY win_by_runs DESC LIMIT 5;
 
  id  | season |    city    |    date    |            team1            |            team2            |         toss_winner         | toss_decision | result | dl_applied |           winner            | win_by_runs | win_by_wickets | player_of_the_match |                    venue                     |    umpire1     |    umpire2    | umpire3 
 -----+--------+------------+------------+-----------------------------+-----------------------------+-----------------------------+---------------+--------+------------+-----------------------------+-------------+----------------+---------------------+----------------------------------------------+----------------+---------------+---------
@@ -214,7 +214,7 @@ ipl-# ORDER BY date DESC LIMIT 10;
  Shaheed Veer Narayan Singh International Stadium
  Green Park
 ```
-## Aggregation (where)
+## Aggregation
 
 ### What is the highest runs by which any team won a match
 
@@ -310,9 +310,9 @@ ipl-# WHERE player_dismissed IS NOT NULL;
           6727
  ```
  
-## Pattern Match (like)
+## Pattern Match
  
-How many batsmen have names starting with S
+#### How many batsmen have names starting with S
 
 ```
 ipl=# SELECT COUNT(DISTINCT(batsman)) 
@@ -323,7 +323,7 @@ ipl-# WHERE batsman LIKE 'S%';
 -------
     69
 ```
-How many teams have word royal in it (could be anywhere in the team name, any case)
+#### How many teams have word royal in it (could be anywhere in the team name, any case)
 
 ```
 ipl=# SELECT COUNT(DISTINCT(team1))                                                                                                                       FROM matches                                                                                                                                              WHERE LOWER(team1) LIKE '%royal%';
