@@ -1,8 +1,8 @@
 # Exploratory Analysis of IPL Data Using SQL
 
 #### Table of Contents
-  [Setup DB](#setup-db)
-  [Shape of Data](#shape-of-data)
+  * [Setup DB](#setup-db)
+  * [Shape of Data](#shape-of-data)
 
 Indian Premier League (IPL) is the cricket league consisting of various Indian cities and has a brand value of around $5.3Bn. It started in 2008 and attracts large viewership.
 
