@@ -238,7 +238,13 @@ ipl-# ORDER BY date DESC LIMIT 10;
 ## Case
 #### Return a column with comment based on total_runs
 ```
-ipl=# select batsman, total_runs, CASE WHEN total_runs = 4 THEN 'Four' WHEN total_runs = 6 THEN 'Six' WHEN total_runs = 1 THEN 'single' WHEN total_runs = 0 THEN 'duck' END as howzthat FROM deliveries;
+ipl=# select batsman, total_runs, 
+    CASE WHEN total_runs = 4 THEN 'Four' 
+         WHEN total_runs = 6 THEN 'Six' 
+         WHEN total_runs = 1 THEN 'single' 
+         WHEN total_runs = 0 THEN 'duck' 
+     END as howzthat 
+   FROM deliveries;
 
       batsman        | total_runs | howzthat 
 ----------------------+------------+----------
