@@ -6,6 +6,7 @@
   * [Viewing date](#viewing-data)
   * [Distinct values](#distinct-values)
   * [Order by](#order-by)
+  * [Case](#case)
   * [Data Aggregation](#data-aggregation)
   * [Pattern Match](#pattern-match)
   * [Group By](#group-by)
@@ -233,6 +234,29 @@ ipl-# ORDER BY date DESC LIMIT 10;
  Shaheed Veer Narayan Singh International Stadium
  Green Park
 ```
+
+## Case
+#### Return a column with comment based on total_runs
+```
+ipl=# select batsman, total_runs, CASE WHEN total_runs = 4 THEN 'Four' WHEN total_runs = 6 THEN 'Six' WHEN total_runs = 1 THEN 'single' WHEN total_runs = 0 THEN 'duck' END as howzthat FROM deliveries;
+
+      batsman        | total_runs | howzthat 
+----------------------+------------+----------
+ SC Ganguly           |          1 | single
+ BB McCullum          |          0 | duck
+ BB McCullum          |          1 | single
+ BB McCullum          |          0 | duck
+ BB McCullum          |          0 | duck
+ BB McCullum          |          0 | duck
+ BB McCullum          |          1 | single
+ BB McCullum          |          0 | duck
+ BB McCullum          |          4 | Four
+ BB McCullum          |          4 | Four
+ BB McCullum          |          6 | Six
+ BB McCullum          |          4 | Four
+ BB McCullum          |          0 | duck
+ SC Ganguly           |          0 | duck
+ ```
 ## Data Aggregation
 
 #### What is the highest runs by which any team won a match
